@@ -1,1 +1,11 @@
 <div class="alert alert-success">This is our receip app</div>
+<div class="card border-light mb-3" style="max-width: 500px;">
+    <div class="card-header">{{recipe.title}}</div>
+    
+    <div class="card-body text-dark">
+        <div style="float: right">
+            <img src="{{recipe.cover_photo ? recipe.cover_photo : '/assets/emptybowl.jpg'}}" style="width: 150px; height: 150px" />
+        </div>
+        <p class="card-text">{{recipe.description}}</p>
+      </div>
+</div>
