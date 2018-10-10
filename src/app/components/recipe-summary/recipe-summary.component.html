@@ -1,0 +1,9 @@
+<div class="recipe card border-light mb-3">
+    <div class="card-header">{{recipe.title}}</div>
+    <div class="card-body text-dark">
+        <div class="cover-photo-holder" >
+            <img src="{{recipe.cover_photo ? recipe.cover_photo : '/assets/emptybowl.jpg'}}"/>
+        </div>
+        <p class="card-text">{{recipe.description}}</p>
+      </div>
+</div>
