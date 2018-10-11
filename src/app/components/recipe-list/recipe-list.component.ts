@@ -13,15 +13,15 @@ export class RecipeListComponent implements OnInit {
   constructor() { 
     this.recipes = [
       new Recipe("banana Bread", "This is my favorite banana recipe! lorem ipsum hahahah; lorem ipsum hahahah lorem ipsum hahahah lorem ipsum hahahah. lorem ipsum hahahah My mom told me to go to the home"
-      , null, null, null),
+      , null, null, null, 4,60),
       new Recipe("banana Bread", "This is my favorite banana recipe! lorem ipsum hahahah; lorem ipsum hahahah lorem ipsum hahahah lorem ipsum hahahah."
-      , null, null, null), 
+      , null, null, null, 4, 30), 
       new Recipe("banana Bread", "This is my favorite banana recipe! lorem ipsum hahahah"
-      , null, null, null),
+      , null, null, null, 5, 10),
       new Recipe("banana Bread", "This is my favorite banana recipe! lorem ipsum hahahah"
-      , null, null, null),
+      , null, null, null, 3, 20),
       new Recipe("banana Bread", "This is my favorite banana recipe! lorem ipsum hahahah, blablablablablablablablablablablabla"
-      , null, null, null)
+      , null, null, null, 5, 50)
     ];
   }
 

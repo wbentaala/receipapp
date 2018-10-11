@@ -5,5 +5,9 @@
             <img src="{{recipe.cover_photo ? recipe.cover_photo : '/assets/emptybowl.jpg'}}"/>
         </div>
         <p class="card-text">{{recipe.description}}</p>
+        <div>
+          <div style="float: left; font-weight: bold; width: 150px">Preparation Time</div>
+          <div>{{ recipe.preparation_time }}</div>
+        </div>
       </div>
 </div>
