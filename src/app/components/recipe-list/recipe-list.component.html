@@ -1,3 +1,19 @@
 <h1>These are our Recipes</h1>
 
 <app-recipe-summary *ngFor="let recipe of recipes" [recipe]="recipe"></app-recipe-summary>
+
+<div style="clear: both;"></div>
+<div class="newrecipe card border-light mb-3">
+    <div class="card-header">
+      <h4>Add New Recipe</h4>
+    </div>
+    <div class="card-body">
+      <div class="input-group">
+        <input style="width: 400px" type="text" class="form-control" placeholder="Recipe Title" name="title" />
+      </div>
+      <div class="input-group">
+          <textarea style="width: 400px" rows="5" type="text" class="form-control" placeholder="Recipe Description" name="description">
+          </textarea>
+      </div>
+    </div>
+</div>
