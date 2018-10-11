@@ -29,5 +29,9 @@ export class Recipe{
         this.preparation_time = pt;
     }
 
+    public static createEmptyRecipe(){
+        return new Recipe("", "", null, null, "", 1, 1);
+    }
+
     
 }

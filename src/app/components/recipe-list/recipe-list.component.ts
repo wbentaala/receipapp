@@ -9,19 +9,21 @@ import { Recipe } from '../../model/recipe';
 export class RecipeListComponent implements OnInit {
 
   recipes: Recipe[];
+  recipe_in_progress : Recipe;
   
   constructor() { 
+    this.recipe_in_progress = Recipe.createEmptyRecipe();
     this.recipes = [
-      new Recipe("banana Bread", "This is my favorite banana recipe! lorem ipsum hahahah; lorem ipsum hahahah lorem ipsum hahahah lorem ipsum hahahah. lorem ipsum hahahah My mom told me to go to the home"
+      new Recipe("banana Bread", "This is my favorite banana recipe! lorem ipsum hahahah; lorem ipsum hahahah lorem . lorem ipsum hahahah My mom told me to go to the home"
       , null, null, null, 4,60),
       new Recipe("banana Bread", "This is my favorite banana recipe! lorem ipsum hahahah; lorem ipsum hahahah lorem ipsum hahahah lorem ipsum hahahah."
       , null, null, null, 4, 30), 
-      new Recipe("banana Bread", "This is my favorite banana recipe! lorem ipsum hahahah"
-      , null, null, null, 5, 10),
-      new Recipe("banana Bread", "This is my favorite banana recipe! lorem ipsum hahahah"
+      /* new Recipe("banana Bread", "This is my favorite banana recipe! lorem ipsum hahahah"
+      , null, null, null, 5, 10) */
+      /* new Recipe("banana Bread", "This is my favorite banana recipe! lorem ipsum hahahah"
       , null, null, null, 3, 20),
       new Recipe("banana Bread", "This is my favorite banana recipe! lorem ipsum hahahah, blablablablablablablablablablablabla"
-      , null, null, null, 5, 50)
+      , null, null, null, 5, 50) */
     ];
   }
 
