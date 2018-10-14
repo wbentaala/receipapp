@@ -1,6 +1,10 @@
-<h1>These are our Recipes</h1>
+<div style="float: right;">
+  <input type="button" value="Toggle On" (click)="toggleOn()"/>
+</div>
+<h1 [ngClass]="current_style">These are our Recipes</h1>
 
-<app-recipe-summary *ngFor="let recipe of recipes" [recipe]="recipe"></app-recipe-summary>
+
+<app-recipe-summary *ngFor="let recipe of recipes" [recipe]="recipe" (zoomIn)="zoomInOnClick(recipe)"></app-recipe-summary>
 
 <div style="clear: both;"></div>
 <div class="newrecipe card border-light mb-3">
@@ -22,6 +26,9 @@
       <div class="input-group">
         <input style="width: 50px" type="text" [(ngModel)]="recipe_in_progress.preparation_time" class="form-control" placeholder="Preparation Time" name="preparation_time" />
         <span class="input-group-addon">minutes</span>
+      </div>
+      <div class="input-group">
+        <input type="button" value="Add Recipe" (click)="addRecipeClicked()" />
       </div>
     </div>
 </div>

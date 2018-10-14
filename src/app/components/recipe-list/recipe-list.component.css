@@ -1,0 +1,11 @@
+h1{
+    font-size: 160%
+}
+
+.darkbg{
+    background-color: gray;
+}
+
+div.input-group{
+    margin: 10px;
+}
