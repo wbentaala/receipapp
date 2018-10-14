@@ -6,12 +6,14 @@ import { Recipe } from '../../model/recipe';
   templateUrl: './recipe-list.component.html',
   styleUrls: ['./recipe-list.component.css']
 })
-export class RecipeListComponent implements OnInit {
+export class RecipeListComponent {
 
   recipes: Recipe[];
   recipe_in_progress : Recipe;
+  current_style : any;
   
   constructor() { 
+    this.current_style = { 'darkbg': false};
     this.recipe_in_progress = Recipe.createEmptyRecipe();
     this.recipes = [
       new Recipe("banana Bread", "This is my favorite banana recipe! lorem ipsum hahahah; lorem ipsum hahahah lorem . lorem ipsum hahahah My mom told me to go to the home"
@@ -27,7 +29,20 @@ export class RecipeListComponent implements OnInit {
     ];
   }
 
-  ngOnInit() {
+  public addRecipeClicked() {
+    console.log(JSON.stringify(this.recipe_in_progress));
+    this.recipes.unshift(this.recipe_in_progress);
+    this.recipe_in_progress = Recipe.createEmptyRecipe();
+  }
+
+  public zoomInOnClick(recipe){
+    console.log(JSON.stringify(recipe));
+  }
+
+  public toggleOn(){
+    console.log(this.current_style);
+    const newvalue = !this.current_style['darkbg'];
+    this.current_style = { 'darkbg': newvalue};
   }
 
 }
