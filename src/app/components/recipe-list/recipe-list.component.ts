@@ -11,9 +11,11 @@ export class RecipeListComponent {
   recipes: Recipe[];
   recipe_in_progress : Recipe;
   current_style : any;
+  current_size : any;
   
   constructor() { 
     this.current_style = { 'darkbg': false};
+    this.current_size = { 'font-size': '150%' };
     this.recipe_in_progress = Recipe.createEmptyRecipe();
     this.recipes = [
       new Recipe("banana Bread", "This is my favorite banana recipe! lorem ipsum hahahah; lorem ipsum hahahah lorem . lorem ipsum hahahah My mom told me to go to the home"
@@ -43,6 +45,18 @@ export class RecipeListComponent {
     console.log(this.current_style);
     const newvalue = !this.current_style['darkbg'];
     this.current_style = { 'darkbg': newvalue};
+  }
+
+  public toggleFontSize(){
+    console.log(this.current_size);
+    const newvalue = this.current_size['font-size'];
+    if(newvalue == '150%'){
+      this.current_size = { 'font-size' : '175%'};
+    }
+    else{
+      this.current_size = { 'font-size' : '150%' };
+    } 
+    
   }
 
 }
