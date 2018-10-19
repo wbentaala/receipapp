@@ -10,7 +10,6 @@ export class Instruction{
 
 
 export class Recipe{
-    
     public title: string;
     public description: string; 
     public feeds_this_many: number; 
