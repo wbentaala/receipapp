@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../../model/recipe';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-list',
@@ -13,17 +14,45 @@ export class RecipeListComponent {
   current_style : any;
   current_size : any;
   
-  constructor() { 
+  constructor(private router: Router) { 
     this.current_style = { 'darkbg': false};
     this.current_size = { 'font-size': '150%' };
     this.recipe_in_progress = Recipe.createEmptyRecipe();
     this.recipes = [
-      new Recipe("banana Bread", "This is my favorite banana recipe! lorem ipsum hahahah; lorem ipsum hahahah lorem . lorem ipsum hahahah My mom told me to go to the home"
-      , null, null, null, 4,60),
-      new Recipe("banana Bread", "This is my favorite banana recipe! lorem ipsum hahahah; lorem ipsum hahahah lorem ipsum hahahah lorem ipsum hahahah."
-      , null, null, null, 4, 30), 
-      /* new Recipe("banana Bread", "This is my favorite banana recipe! lorem ipsum hahahah"
-      , null, null, null, 5, 10) */
+      new Recipe(1, "banana Bread", "This is my favorite banana recipe! lorem ipsum hahahah; lorem ipsum hahahah lorem . lorem ipsum hahahah My mom told me to go to the home"
+      , [
+        {"measure": "1 lb", "ingredient": " asparagus"},
+        {"measure": "1 1/2 tbsp", "ingredient": "olive oil"},
+        {"measure": "1/2 tsp", "ingredient": "kosher salt"}
+    ],
+    [
+      {"instruction": "Preheat oven to 425°F.", "photo": null},
+      {"instruction": "Cut off the woody bottom part of the asparagus spears and discard.", "photo": null},
+      {"instruction": "Place asparagus on foil-lined baking sheet and drizzle with olive oil.", "photo": null}
+    ], null, 4,60, null),
+      new Recipe(2, "banana Bread", "This is my favorite banana recipe! lorem ipsum hahahah; lorem ipsum hahahah lorem ipsum hahahah lorem ipsum hahahah."
+    ,[
+        {"measure": "1 lb", "ingredient": " asparagus"},
+        {"measure": "1 1/2 tbsp", "ingredient": "olive oil"},
+        {"measure": "1/2 tsp", "ingredient": "kosher salt"}
+    ],
+    [
+      {"instruction": "Preheat oven to 425°F.", "photo": null},
+      {"instruction": "Cut off the woody bottom part of the asparagus spears and discard.", "photo": null},
+      {"instruction": "Place asparagus on foil-lined baking sheet and drizzle with olive oil.", "photo": null}
+     ], null, 4, 30, null), 
+      new Recipe(3, "banana Bread", "This is my favorite banana recipe! lorem ipsum hahahah"
+    ,[
+        {"measure": "1 lb", "ingredient": " asparagus"},
+        {"measure": "1 1/2 tbsp", "ingredient": "olive oil"},
+        {"measure": "1/2 tsp", "ingredient": "kosher salt"}
+    ],
+    [
+      {"instruction": "Preheat oven to 425°F.", "photo": null},
+      {"instruction": "Cut off the woody bottom part of the asparagus spears and discard.", "photo": null},
+      {"instruction": "Place asparagus on foil-lined baking sheet and drizzle with olive oil.", "photo": null}
+    ], null, 5, 10, null)
+    
       /* new Recipe("banana Bread", "This is my favorite banana recipe! lorem ipsum hahahah"
       , null, null, null, 3, 20),
       new Recipe("banana Bread", "This is my favorite banana recipe! lorem ipsum hahahah, blablablablablablablablablablablabla"
@@ -37,8 +66,8 @@ export class RecipeListComponent {
     this.recipe_in_progress = Recipe.createEmptyRecipe();
   }
 
-  public zoomInOnClick(recipe){
-    console.log(JSON.stringify(recipe));
+  public userClickedOnRecipe(recipe_id){
+    this.router.navigateByUrl('/recipes/' + recipe_id);
   }
 
   public toggleOn(){
@@ -56,7 +85,10 @@ export class RecipeListComponent {
     else{
       this.current_size = { 'font-size' : '150%' };
     } 
-    
+  }
+
+  public addNewRecipe(){
+    this.router.navigateByUrl('/editnewrecipe');
   }
 
 }

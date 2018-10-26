@@ -1,0 +1,29 @@
+<p><a (click)="goBackPressed()" style="cursor: pointer">Go Back</a></p>
+<div class="recipe card border-light mb-3">
+  <div class="card-header">{{recipe.title}}</div>
+  <div class="card-body text-dark">
+      <div class="cover-photo-holder" >
+          <img src="{{recipe.cover_photo ? recipe.cover_photo : '/assets/emptybowl.jpg'}}"/>
+      </div>
+      <p class="card-text">{{recipe.description}}</p>
+      <div>
+        <div style="float: left; font-weight: bold; width: 150px">Preparation Time</div>
+        <div>{{ recipe.preparation_time }}</div>
+        <div style="float: left; font-weight: bold; width: 150px">Feeds how many</div>
+        <div>{{ recipe.feeds_this_many }}</div>
+      </div>
+      <h4>Ingredients</h4>
+      <ul>
+        <li *ngFor="let ingredient of recipe.ingredients">
+            {{ingredient.ingredient}} ({{ingredient.measure}})
+        </li>
+      </ul>
+
+      <h4>Instructions</h4>
+      <ol>
+        <li *ngFor="let instruction of recipe.instructions">
+            {{instruction.instruction}}
+        </li>
+      </ol>
+    </div>
+</div>
