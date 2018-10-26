@@ -1,0 +1,25 @@
+<div class="newrecipe card border-light mb-3">
+  <div class="card-header">
+    <h4>Add New Recipe</h4>
+  </div>
+  <div class="card-body">
+    <div class="input-group">
+      <input style="width: 400px" [(ngModel)]="recipe_in_progress.title" type="text" class="form-control" placeholder="Recipe Title" name="title" />
+    </div>
+    <div class="input-group">
+        <textarea style="width: 400px" [(ngModel)]="recipe_in_progress.description" rows="5" type="text" class="form-control" placeholder="Recipe Description" name="description">
+        </textarea>
+    </div>
+    <div class="input-group">
+      <input style="width: 50px" [(ngModel)]="recipe_in_progress.feeds_this_many" type="text" class="form-control" placeholder="Feeds this many" name="feeds_this_many" />
+      <span class="input-group-addon">people</span>
+    </div>
+    <div class="input-group">
+      <input style="width: 50px" type="text" [(ngModel)]="recipe_in_progress.preparation_time" class="form-control" placeholder="Preparation Time" name="preparation_time" />
+      <span class="input-group-addon">minutes</span>
+    </div>
+    <div class="input-group">
+      <input type="button" value="Add Recipe" (click)="addRecipeClicked()" />
+    </div>
+  </div>
+</div>

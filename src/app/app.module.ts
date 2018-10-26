@@ -6,12 +6,16 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { RecipeListComponent } from './components/recipe-list/recipe-list.component';
 import { RecipeSummaryComponent } from './components/recipe-summary/recipe-summary.component';
+import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
+import { EditNewRecipeComponent } from './components/edit-new-recipe/edit-new-recipe.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RecipeListComponent,
-    RecipeSummaryComponent
+    RecipeSummaryComponent,
+    RecipeDetailsComponent,
+    EditNewRecipeComponent
   ],
   imports: [
     BrowserModule, 
@@ -25,6 +29,14 @@ import { RecipeSummaryComponent } from './components/recipe-summary/recipe-summa
         path: '',
         redirectTo: '/recipes', 
         pathMatch: 'full'
+      }, 
+      {
+        path: 'recipes/:recipe_id',
+        component: RecipeDetailsComponent
+      }, 
+      {
+        path: 'editnewrecipe', 
+        component: EditNewRecipeComponent
       }
     ]),
   ],

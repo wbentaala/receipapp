@@ -1,0 +1,6 @@
+div.cover-photo-holder img{
+    float: right;
+    width: 250px;
+    height: 250px;
+    margin: 5px;
+}
