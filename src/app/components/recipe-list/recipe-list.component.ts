@@ -17,7 +17,7 @@ export class RecipeListComponent {
   constructor(private router: Router) { 
     this.current_style = { 'darkbg': false};
     this.current_size = { 'font-size': '150%' };
-    this.recipe_in_progress = Recipe.createEmptyRecipe();
+    
     this.recipes = [
       new Recipe(1, "banana Bread", "This is my favorite banana recipe! lorem ipsum hahahah; lorem ipsum hahahah lorem . lorem ipsum hahahah My mom told me to go to the home"
       , [

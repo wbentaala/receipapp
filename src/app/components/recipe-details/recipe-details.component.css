@@ -4,3 +4,21 @@ div.cover-photo-holder img{
     height: 250px;
     margin: 5px;
 }
+
+div#ingredients{
+    border: 1px solid #cccccc;
+    background-color: #eeeeee;
+    float: left;
+    max-width: 250px;
+    min-height: 500px;
+    padding: 0 10;
+    margin: 10px 0;
+}
+
+div#instructions{
+    float: left;
+    max-width: 400px;
+    min-height: 500px;
+    padding: 0 10;
+    margin: 10px 0;
+}
