@@ -1,9 +1,14 @@
-<div style="float: right; padding: 5px">
+<div style="float: right; padding: 5px; text-decoration-color: blue">
   <input type="button" value="Add New Recipe" (click)="addNewRecipe()"/>
 </div>
 <h1 [ngClass]="current_style" [ngStyle]="current_size" >These are our Recipes</h1>
 
-
+<p *ngIf="!recipes_loaded" style="color: brown">
+  Loading Recipes ... Pease wait a moment
+</p>
+<p *ngIf="no_recipes">
+  No Recipes 
+</p>
 <app-recipe-summary *ngFor="let recipe of recipes" [recipe]="recipe" (userClick)="userClickedOnRecipe($event)"></app-recipe-summary>
 
 <div style="clear: both;"></div>

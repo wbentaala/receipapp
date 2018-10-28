@@ -1,63 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../../model/recipe';
 import { Router } from '@angular/router';
+import { RecipeService } from 'src/app/services/recipe.service';
+
 
 @Component({
   selector: 'app-recipe-list',
   templateUrl: './recipe-list.component.html',
   styleUrls: ['./recipe-list.component.css']
 })
-export class RecipeListComponent {
+export class RecipeListComponent implements OnInit {
 
   recipes: Recipe[];
   recipe_in_progress : Recipe;
   current_style : any;
   current_size : any;
+
+  recipes_loaded: boolean;
+  no_recipes: boolean;
   
-  constructor(private router: Router) { 
+  constructor(private router: Router, 
+    private recipe_service: RecipeService) { 
     this.current_style = { 'darkbg': false};
     this.current_size = { 'font-size': '150%' };
     
-    this.recipes = [
-      new Recipe(1, "banana Bread", "This is my favorite banana recipe! lorem ipsum hahahah; lorem ipsum hahahah lorem . lorem ipsum hahahah My mom told me to go to the home"
-      , [
-        {"measure": "1 lb", "ingredient": " asparagus"},
-        {"measure": "1 1/2 tbsp", "ingredient": "olive oil"},
-        {"measure": "1/2 tsp", "ingredient": "kosher salt"}
-    ],
-    [
-      {"instruction": "Preheat oven to 425°F.", "photo": null},
-      {"instruction": "Cut off the woody bottom part of the asparagus spears and discard.", "photo": null},
-      {"instruction": "Place asparagus on foil-lined baking sheet and drizzle with olive oil.", "photo": null}
-    ], null, 4,60, null),
-      new Recipe(2, "banana Bread", "This is my favorite banana recipe! lorem ipsum hahahah; lorem ipsum hahahah lorem ipsum hahahah lorem ipsum hahahah."
-    ,[
-        {"measure": "1 lb", "ingredient": " asparagus"},
-        {"measure": "1 1/2 tbsp", "ingredient": "olive oil"},
-        {"measure": "1/2 tsp", "ingredient": "kosher salt"}
-    ],
-    [
-      {"instruction": "Preheat oven to 425°F.", "photo": null},
-      {"instruction": "Cut off the woody bottom part of the asparagus spears and discard.", "photo": null},
-      {"instruction": "Place asparagus on foil-lined baking sheet and drizzle with olive oil.", "photo": null}
-     ], null, 4, 30, null), 
-      new Recipe(3, "banana Bread", "This is my favorite banana recipe! lorem ipsum hahahah"
-    ,[
-        {"measure": "1 lb", "ingredient": " asparagus"},
-        {"measure": "1 1/2 tbsp", "ingredient": "olive oil"},
-        {"measure": "1/2 tsp", "ingredient": "kosher salt"}
-    ],
-    [
-      {"instruction": "Preheat oven to 425°F.", "photo": null},
-      {"instruction": "Cut off the woody bottom part of the asparagus spears and discard.", "photo": null},
-      {"instruction": "Place asparagus on foil-lined baking sheet and drizzle with olive oil.", "photo": null}
-    ], null, 5, 10, null)
     
-      /* new Recipe("banana Bread", "This is my favorite banana recipe! lorem ipsum hahahah"
-      , null, null, null, 3, 20),
-      new Recipe("banana Bread", "This is my favorite banana recipe! lorem ipsum hahahah, blablablablablablablablablablablabla"
-      , null, null, null, 5, 50) */
-    ];
+  }
+
+  ngOnInit(){
+    this.recipe_service.getAllRecipes().then(
+      (recipes)=> {
+        this.recipes = recipes;
+        this.recipes_loaded = true;
+        if(!this.recipes)
+          this.no_recipes = true;
+      });
   }
 
   public addRecipeClicked() {

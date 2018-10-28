@@ -9,6 +9,8 @@ import { RecipeSummaryComponent } from './components/recipe-summary/recipe-summa
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 import { EditNewRecipeComponent } from './components/edit-new-recipe/edit-new-recipe.component';
 
+import { RecipeService } from './services/recipe.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +42,7 @@ import { EditNewRecipeComponent } from './components/edit-new-recipe/edit-new-re
       }
     ]),
   ],
-  providers: [],
+  providers: [RecipeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
