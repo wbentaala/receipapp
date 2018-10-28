@@ -1,5 +1,8 @@
-<p><a (click)="goBackPressed()" style="cursor: pointer">Go Back</a></p>
-<div class="recipe card border-light mb-3">
+<p><a (click)="goBackPressed()" style="cursor: pointer; color: blue">Go Back</a></p>
+<p *ngIf="!recipe" style="color: brown">
+  Loading Recipe Details ...
+</p>
+<div *ngIf="recipe" class="recipe card border-light mb-3">
   <div class="card-header">{{recipe.title}}</div>
   <div class="card-body text-dark">
       <div class="cover-photo-holder" >
