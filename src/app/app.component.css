@@ -1,0 +1,21 @@
+.topnav{
+    background-color: #983C29;
+}
+
+.topnav a{
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+
+.topnav a:hover{
+    background-color: white;
+    color: #983C29;
+}
+
+.topnav a.active{
+    background-color: #4caf50;
+    color: white;
+}
