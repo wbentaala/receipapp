@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { RecipeListComponent } from './components/recipe-list/recipe-list.component';
@@ -22,6 +23,7 @@ import { RecipeService } from './services/recipe.service';
   imports: [
     BrowserModule, 
     FormsModule,
+    HttpModule,
     RouterModule.forRoot([
       {
         path: 'recipes',
