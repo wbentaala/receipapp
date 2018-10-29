@@ -1,12 +1,16 @@
+<div *ngIf="load_error" class="alert alert-danger" role="alert">
+  {{error_message}} 
+</div>
+
 <div style="float: right; padding: 5px; text-decoration-color: blue">
   <input type="button" value="Add New Recipe" (click)="addNewRecipe()"/>
 </div>
 <h1 [ngClass]="current_style" [ngStyle]="current_size" >These are our Recipes</h1>
 
-<p *ngIf="!recipes_loaded" style="color: brown">
+<p *ngIf="!recipes_loaded && !load_error" style="color: brown">
   Loading Recipes ... Pease wait a moment
 </p>
-<p *ngIf="no_recipes">
+<p *ngIf="no_recipes && !load_error">
   No Recipes 
 </p>
 <app-recipe-summary *ngFor="let recipe of recipes" [recipe]="recipe" (userClick)="userClickedOnRecipe($event)"></app-recipe-summary>

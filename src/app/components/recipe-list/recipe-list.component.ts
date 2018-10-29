@@ -18,12 +18,15 @@ export class RecipeListComponent implements OnInit {
 
   recipes_loaded: boolean;
   no_recipes: boolean;
+
+  load_error: boolean;
+  error_message: string;
   
   constructor(private router: Router, 
     private recipe_service: RecipeService) { 
     this.current_style = { 'darkbg': false};
     this.current_size = { 'font-size': '150%' };
-    
+    this.load_error = false;
     
   }
 
@@ -34,6 +37,10 @@ export class RecipeListComponent implements OnInit {
         this.recipes_loaded = true;
         if(!this.recipes)
           this.no_recipes = true;
+      }).catch((err)=>{
+        this.load_error = true;
+        const body = err._body; 
+        this.error_message = body.message;
       });
   }
 
