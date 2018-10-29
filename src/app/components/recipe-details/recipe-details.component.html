@@ -1,8 +1,14 @@
-<p><a (click)="goBackPressed()" style="cursor: pointer; color: blue">Go Back</a></p>
-<p *ngIf="!recipe" style="color: brown">
+<p *ngIf="!load_error"><a (click)="goBackPressed()" style="cursor: pointer; color: blue">Go Back</a></p>
+<p *ngIf="!recipe && !load_error" style="color: brown">
   Loading Recipe Details ...
 </p>
-<div *ngIf="recipe" class="recipe card border-light mb-3">
+<div *ngIf="load_error">
+  <div class="alert alert-danger" role="alert">
+    Error
+    {{ error_text }} - <a [routerLink]="['/recipes']">Back to Recipe List</a>
+  </div>
+</div>
+<div *ngIf="recipe && !load_error" class="recipe card border-light mb-3">
   <div class="card-header">{{recipe.title}}</div>
   <div class="card-body text-dark">
       <div class="cover-photo-holder" >

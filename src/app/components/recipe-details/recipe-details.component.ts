@@ -12,10 +12,14 @@ export class RecipeDetailsComponent implements OnInit {
 
   recipe: Recipe;
 
+  load_error: boolean;
+  error_text: string;
+
   constructor(private route: ActivatedRoute, 
     private location :Location,
     private recipe_service: RecipeService) { 
       console.log(this.recipe);
+      this.load_error = false;
     }
 
   ngOnInit() : void {
@@ -23,8 +27,12 @@ export class RecipeDetailsComponent implements OnInit {
       const recipe_id = parseInt(params.get('recipe_id'), 10);
       this.recipe_service.getRecipeById(recipe_id)
         .then((recipe)=>{
-        console.log(recipe);
         this.recipe = recipe
+      })
+      .catch((err) => {
+        this.load_error = true;
+        const body = err._body;
+        this.error_text = body.message;
       });
     });
     
