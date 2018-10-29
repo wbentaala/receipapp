@@ -32,7 +32,7 @@
     <div class="form-group">
       <label>Instructions</label>
       <div class="input-group" *ngFor="let instruction of recipe_in_progress.instructions; let i = index"> 
-        <input type="text" width="150px" name="instruction" ([ngModel])="recipe_in_progress.instructions[i].instruction" placeholder="instruction"/>
+        <input type="text" width="150px" name="instruction" [(ngModel)]="recipe_in_progress.instructions[i].instruction" placeholder="instruction"/>
         <a (click)="removeInstruction(i)" style="cursor: pointer; font-size: 80%">remove</a>
       </div>
       <div class="add-instruction">
