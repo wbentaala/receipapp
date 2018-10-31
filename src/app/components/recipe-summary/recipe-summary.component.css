@@ -22,7 +22,7 @@ div.cover-photo-holder img{
 
 @media(min-width: 800px){
     .recipe{
-        width: 500px;
+        width: 420px;
         margin: 10px 10px;
     }
 }

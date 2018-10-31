@@ -5,17 +5,17 @@
 .topnav a{
     float: left;
     display: block;
-    color: white;
+    color: blue;
     text-align: center;
     text-decoration: none;
 }
 
 .topnav a:hover{
     background-color: white;
-    color: #983C29;
+    color: blue;
 }
 
-.topnav a.active{
-    background-color: #4caf50;
+.topnav a:active{
+    background-color: red;
     color: white;
 }

@@ -11,9 +11,12 @@ import { Router } from '@angular/router';
 export class EditNewRecipeComponent implements OnInit {
 
   recipe_in_progress: Recipe;
+  disable_add_new_recipe: boolean;
+
   constructor(private recipe_service: RecipeService,
               private router: Router) { 
     this.recipe_in_progress = Recipe.createEmptyRecipe();
+    this.disable_add_new_recipe = true;
   }
 
   ngOnInit() {
@@ -51,5 +54,9 @@ export class EditNewRecipeComponent implements OnInit {
     .then((recipe) => {
       this.router.navigate(['recipes', recipe.id]);
     });
+  }
+
+  validateForm(event){
+    console.log(event.target.value);
   }
 }
