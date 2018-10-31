@@ -57,6 +57,30 @@ export class EditNewRecipeComponent implements OnInit {
   }
 
   validateForm(event){
+    this.disable_add_new_recipe = true;
     console.log(event.target.value);
+    if(!this.recipe_in_progress.title || this.recipe_in_progress.title.length < 1)
+      return;
+    if(!this.recipe_in_progress.description || this.recipe_in_progress.description.length < 1)  
+      return;
+    const feeds: number = parseInt('' + this.recipe_in_progress.feeds_this_many, 10);
+    if(isNaN(feeds) || feeds < 1 || feeds > 1000)
+      return;
+    const preptime: number = parseInt('' + this.recipe_in_progress.preparation_time, 10);
+    if(isNaN(feeds) || preptime < 1)
+      return;
+    for (const instr of this.recipe_in_progress.instructions){
+      if(!instr.instruction || instr.instruction.length < 1)
+        return;
+    }
+    for (const ingr of this.recipe_in_progress.ingredients){
+      if(!ingr.ingredient || ingr.ingredient.length < 1)
+        return;
+      const measure = parseInt(ingr.measure, 10);
+      if(measure<1 || measure>100)
+        return;
+    }
+
+    this.disable_add_new_recipe = false;
   }
 }
