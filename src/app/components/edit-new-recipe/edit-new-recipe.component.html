@@ -4,43 +4,43 @@
   </div>
   <div class="card-body">
     <div class="input-group">
-      <input style="width: 400px" [(ngModel)]="recipe_in_progress.title" type="text" class="form-control" placeholder="Recipe Title" name="title" />
+      <input style="width: 400px" [(ngModel)]="recipe_in_progress.title" type="text" (keyup)="validateForm($event)" class="form-control" placeholder="Recipe Title" name="title" />
     </div>
     <div class="input-group">
-        <textarea style="width: 400px" [(ngModel)]="recipe_in_progress.description" rows="5" type="text" class="form-control" placeholder="Recipe Description" name="description">
+        <textarea style="width: 400px" [(ngModel)]="recipe_in_progress.description" rows="5" (keyup)="validateForm($event)" type="text" class="form-control" placeholder="Recipe Description" name="description">
         </textarea>
     </div>
     <div class="input-group">
-      <input style="width: 50px" [(ngModel)]="recipe_in_progress.feeds_this_many" type="text" class="form-control" placeholder="Feeds this many" name="feeds_this_many" />
+      <input style="width: 50px" [(ngModel)]="recipe_in_progress.feeds_this_many" (keyup)="validateForm($event)" type="text" class="form-control" placeholder="Feeds this many" name="feeds_this_many" />
       <span class="input-group-addon">people</span>
     </div>
     <div class="input-group">
-      <input style="width: 50px" type="text" [(ngModel)]="recipe_in_progress.preparation_time" class="form-control" placeholder="Preparation Time" name="preparation_time" />
+      <input style="width: 50px" type="text" [(ngModel)]="recipe_in_progress.preparation_time" (keyup)="validateForm($event)" class="form-control" placeholder="Preparation Time" name="preparation_time" />
       <span class="input-group-addon">minutes</span>
     </div>
     <div class="form-group">
       <label>Ingredients</label>
       <div class="input-group" *ngFor="let ingredient of recipe_in_progress.ingredients; let i = index">
-        <input type="text" style="width: 150px" name="ingredient" [(ngModel)]="recipe_in_progress.ingredients[i].ingredient" placeholder="Ingredient" />
-        <input type="text" style="width: 150px" name="measure" [(ngModel)]="recipe_in_progress.ingredients[i].measure" placeholder="How Much?"/>
+        <input type="text" style="width: 150px" name="ingredient" (keyup)="validateForm($event)" [(ngModel)]="recipe_in_progress.ingredients[i].ingredient" placeholder="Ingredient" />
+        <input type="text" style="width: 150px" name="measure" (keyup)="validateForm($event)" [(ngModel)]="recipe_in_progress.ingredients[i].measure" placeholder="How Much?"/>
         <a (click)="removeIngredient(i)" style="cursor: pointer; font-size: 80%">remove</a> 
       </div>
       <div class="add-ingredient">
-        <input type="button" value="Add" name="addIngr" (click)="addIngredientPressed()"/>
+        <input type="button" value="Add" class="btn btn-primary" name="addIngr" (click)="addIngredientPressed()"/>
       </div>
     </div>
     <div class="form-group">
       <label>Instructions</label>
       <div class="input-group" *ngFor="let instruction of recipe_in_progress.instructions; let i = index"> 
-        <input type="text" width="150px" name="instruction" [(ngModel)]="recipe_in_progress.instructions[i].instruction" placeholder="instruction"/>
+        <input type="text" width="150px" name="instruction" (keyup)="validateForm($event)" [(ngModel)]="recipe_in_progress.instructions[i].instruction" placeholder="instruction"/>
         <a (click)="removeInstruction(i)" style="cursor: pointer; font-size: 80%">remove</a>
       </div>
       <div class="add-instruction">
-        <input type="button" value="Add" name="addInstr" (click)="addInstructionPressed()" >
+        <input type="button" class="btn btn-primary" value="Add" (keyup)="validateForm($event)" name="addInstr" (click)="addInstructionPressed()" >
       </div>
     </div>
     <div class="input-group">
-      <input type="button" value="Add Recipe" (click)="addRecipeClicked()" />
+      <input type="button" [disabled]="disable_add_new_recipe" value="Add Recipe" class="btn btn-success" (click)="addRecipeClicked()" />
     </div>
   </div>
 </div>
