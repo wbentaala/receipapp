@@ -41,7 +41,7 @@
       </div>
     </div>
     <div class="input-group">
-      <input type="button" [disabled]="disable_add_new_recipe" value="Add Recipe" class="btn btn-success" (click)="addRecipeClicked()" />
+      <input type="button" [disabled]="recipeForm.invalid" value="Add Recipe" class="btn btn-success" (click)="addRecipeClicked()" />
     </div>
   </form>
   </div>

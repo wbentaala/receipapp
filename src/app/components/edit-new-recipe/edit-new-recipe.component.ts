@@ -27,7 +27,7 @@ export class EditNewRecipeComponent implements OnInit {
 
   buildFormGroup(){
     const fg = {
-      'title': new FormControl(this.recipe_in_progress.title, [Validators.required]),
+      'title': new FormControl(this.recipe_in_progress.title, [Validators.required, noTunaCasseroleValidator()]),
       'description': new FormControl(this.recipe_in_progress.description, [Validators.required]),
       'preparation_time': new FormControl(this.recipe_in_progress.preparation_time, [Validators.required, Validators.min(1)]),
       'feeds_this_many': new FormControl(this.recipe_in_progress.feeds_this_many, [Validators.required, Validators.min(1)]),
@@ -83,4 +83,14 @@ export class EditNewRecipeComponent implements OnInit {
     });
   }
 
+}
+
+export function noTunaCasseroleValidator(): ValidatorFn{
+  return (control: AbstractControl): { [key: string]: any} => {
+    if(control.value.toLowerCase().indexOf('tuna') !== -1
+    && control.value.toLowerCase().indexOf('casserole') !== -1){
+      return {'noTunaCasserole': { value: control.value} };
+    }
+    return null;
+  }
 }
