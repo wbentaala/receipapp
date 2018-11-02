@@ -2,6 +2,9 @@ import { Recipe } from './../../model/recipe';
 import { Component, OnInit } from '@angular/core';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { Router } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, Validators, ValidatorFn, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { validateConfig } from '@angular/router/src/config';
 
 @Component({
   selector: 'app-edit-new-recipe',
@@ -11,15 +14,35 @@ import { Router } from '@angular/router';
 export class EditNewRecipeComponent implements OnInit {
 
   recipe_in_progress: Recipe;
-  disable_add_new_recipe: boolean;
+  recipeForm: FormGroup;
 
   constructor(private recipe_service: RecipeService,
               private router: Router) { 
     this.recipe_in_progress = Recipe.createEmptyRecipe();
-    this.disable_add_new_recipe = true;
+    this.buildFormGroup();
   }
 
   ngOnInit() {
+  }
+
+  buildFormGroup(){
+    const fg = {
+      'title': new FormControl(this.recipe_in_progress.title, [Validators.required]),
+      'description': new FormControl(this.recipe_in_progress.description, [Validators.required]),
+      'preparation_time': new FormControl(this.recipe_in_progress.preparation_time, [Validators.required, Validators.min(1)]),
+      'feeds_this_many': new FormControl(this.recipe_in_progress.feeds_this_many, [Validators.required, Validators.min(1)]),
+    };
+    
+    for(let i=0; i<this.recipe_in_progress.ingredients.length; i++){
+      fg['ingredient' + i] = new FormControl(this.recipe_in_progress.ingredients[i].ingredient, [Validators.required]);
+      fg['measure' + i] = new FormControl(this.recipe_in_progress.ingredients[i].measure, [Validators.required]);
+    }
+
+    for(let i=0; i<this.recipe_in_progress.instructions.length; i++){
+      fg['instruction_' + i] = new FormControl(this.recipe_in_progress.instructions[i].instruction, [Validators.required]);
+    }
+
+    this.recipeForm = new FormGroup(fg);
   }
 
   public addIngredientPressed(){
@@ -29,10 +52,12 @@ export class EditNewRecipeComponent implements OnInit {
     else{
       this.recipe_in_progress.ingredients.push({ingredient: null, measure: null});
     }
+    this.buildFormGroup();
   }
 
   public removeIngredient(index){
     this.recipe_in_progress.ingredients.splice(index, 1);
+    this.buildFormGroup();
   }
 
   public addInstructionPressed(){
@@ -42,10 +67,12 @@ export class EditNewRecipeComponent implements OnInit {
     else{
       this.recipe_in_progress.instructions.push({ instruction : null, photo : null });
     }
+    this.buildFormGroup();
   }
 
   public removeInstruction(index){
     this.recipe_in_progress.instructions.splice(index, 1);
+    this.buildFormGroup();
   }
 
   addRecipeClicked(){  
@@ -56,31 +83,4 @@ export class EditNewRecipeComponent implements OnInit {
     });
   }
 
-  validateForm(event){
-    this.disable_add_new_recipe = true;
-    console.log(event.target.value);
-    if(!this.recipe_in_progress.title || this.recipe_in_progress.title.length < 1)
-      return;
-    if(!this.recipe_in_progress.description || this.recipe_in_progress.description.length < 1)  
-      return;
-    const feeds: number = parseInt('' + this.recipe_in_progress.feeds_this_many, 10);
-    if(isNaN(feeds) || feeds < 1 || feeds > 1000)
-      return;
-    const preptime: number = parseInt('' + this.recipe_in_progress.preparation_time, 10);
-    if(isNaN(feeds) || preptime < 1)
-      return;
-    for (const instr of this.recipe_in_progress.instructions){
-      if(!instr.instruction || instr.instruction.length < 1)
-        return;
-    }
-    for (const ingr of this.recipe_in_progress.ingredients){
-      if(!ingr.ingredient || ingr.ingredient.length < 1)
-        return;
-      const measure = parseInt(ingr.measure, 10);
-      if(measure<1 || measure>100)
-        return;
-    }
-
-    this.disable_add_new_recipe = false;
-  }
 }
