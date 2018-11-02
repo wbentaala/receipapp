@@ -33,7 +33,7 @@ export class Recipe{
     }
 
     public static createEmptyRecipe(){
-        return new Recipe(-1, "", "", null, null, "", 1, 1, null);
+        return new Recipe(-1, "", "", [], [], "", 1, 1, null);
     }
 
     
